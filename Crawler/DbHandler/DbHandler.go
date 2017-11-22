@@ -33,7 +33,7 @@ func (m *MongoDbHandler) Insert(collection string, data GlobalTypes.Data) {
 		return
 	}
 
-	buff := make([]byte, bytes.MinRead)   //512 bytes buffer
+	buff := make([]byte, 4096)   //4096 bytes buffer
 	result := make([]byte, 0) //the total slice of bytes
 	for {
 		_, err := data.Value.Read(buff)
