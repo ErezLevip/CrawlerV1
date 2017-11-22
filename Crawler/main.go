@@ -32,7 +32,9 @@ func main() {
 func crawl(url string) GlobalTypes.Data {
 	r, err := http.Get(url) //send http get request
 	if (err != nil) {
-		log.Println(err.Error())
+		if(r.StatusCode != http.StatusNotFound) {
+			log.Println(err.Error())
+		}
 	} else {
 		tokenizer := html.NewTokenizer(r.Body) //initialize Tokenizer
 		movie := GetMovieData(tokenizer)       // get the movie after processing
