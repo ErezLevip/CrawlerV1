@@ -4,7 +4,6 @@ import (
 	"io"
 	"fmt"
 	"CrawlerV1/Crawler/GlobalTypes"
-	"bytes"
 )
 
 type DbHandler interface {
