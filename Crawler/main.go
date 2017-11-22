@@ -14,11 +14,11 @@ import (
 
 func main() {
 
-	runtime.GOMAXPROCS(runtime.NumCPU())
+	runtime.GOMAXPROCS(runtime.NumCPU()) //use max processing cores
 
 	engine := Engine.CrawlerEngine{}.Make(Engine.CrawlerConfiguration{
 		MaxBulkSize:     1000,
-		BaseUrl:         "http://imdb.com/title/tt00",
+		BaseUrl:         "",
 		NumberOfWorkers: 1000,
 		MinIndex:        11001,
 		MongoConfig: DbHandler.MongoConfiguration{
@@ -29,8 +29,8 @@ func main() {
 	engine.Start()
 }
 
-func crawl(s string) GlobalTypes.Data {
-	r, err := http.Get(s) //send http get request
+func crawl(url string) GlobalTypes.Data {
+	r, err := http.Get(url) //send http get request
 	if (err != nil) {
 		log.Println(err.Error())
 	} else {
